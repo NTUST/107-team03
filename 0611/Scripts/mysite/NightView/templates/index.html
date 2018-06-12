@@ -1,0 +1,228 @@
+<!DOCTYPE HTML>
+<!--
+	Solarize by TEMPLATED
+	templated.co @templatedco
+	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
+
+<html>
+	<head>
+		<title>雙北夜啖城</title>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<!--[if lte IE 8]><script src="css/ie/html5shiv.js"></script><![endif]-->
+		<script src="/static/js/jquery.min.js"></script>
+		<script src="/static/js/jquery.dropotron.min.js"></script>
+		<script src="/static/js/skel.min.js"></script>
+		<script src="/static/js/skel-layers.min.js"></script>
+		<script src="/static/js/init.js"></script>
+ 
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+			<link rel="stylesheet" href="/static/css/skel.css" />
+			<link rel="stylesheet" href="/static/css/animate.css" />
+			<link rel="stylesheet" href="/static/css/style.css" />
+
+</script>
+		
+		<!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
+	</head>
+	<body class="homepage">
+		<!--登入畫面-->
+
+		<div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    	  	<div class="modal-dialog">
+				<div class="loginmodal-container">
+					<h1>Login to Your Account</h1><br>
+					<form action="" method="post">
+						<input type="text" name="username""id="username" placeholder="Username">
+						<input type="password" name="password" id="password" placeholder="Password">
+						<input type="submit" class="login loginmodal-submit" value="Login">
+					</form>
+				</div>
+			</div>
+		</div>
+
+		<!--註冊畫面-->
+		<div class="modal fade" id="register-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    	  	<div class="modal-dialog">
+				<div class="loginmodal-container">
+					<h1>Sign Up Your Account</h1><br>
+					<form action="" method="post">
+						<input type="text" name="username" id="username" placeholder="Username">
+						<input type="password" name="password" id="password" placeholder="Password">
+						<input type="password" placeholder="Re-enter Password">
+						<input type="text" name="lastname" id="lastname" placeholder="Last Name">
+						<input type="text" name="firstname" id="firstname" placeholder="First Name">
+						<input type="submit" class="login loginmodal-submit" value="Register">
+					</form>
+				</div>
+			</div>
+		</div>
+		<!-- Header Wrapper -->
+			<div class="wrapper style1">
+			
+			<!-- Header -->
+				<div id="header">
+					<div class="container">
+							
+						<!-- Logo -->
+							<h1><a href="#" id="logo">Best Nightview Scheduled Website.</a></h1>
+						
+						<!-- Nav --> 
+							<nav id="nav" style="margin-top:10px;border-radius: 1em;background:rgba(34,34,34,0.8)" class="navbar-fixed-top">
+								<ul>
+									<li><a href="/index/">Home</a></li>
+																		<li>
+										<a href="/foodmap/300">美食地圖</a>
+										<ul>
+											<li>
+												<a href="/foodmap/100">台 北 市</a>
+												<ul>
+													<li><a href="/foodmap/0">大 安 區</a></li>
+													<li><a href="/foodmap/8">中 山 區</a></li>
+													<li><a href="/foodmap/4">中 正 區</a></li>
+													<li><a href="/foodmap/7">士 林 區</a></li>
+													<li><a href="/foodmap/1">內 湖 區</a></li>
+													<li><a href="/foodmap/2">信 義 區</a></li>
+												</ul>
+											</li>
+											<li>
+												<a href="/foodmap/100">新 北 市</a>
+												<ul>
+													<li><a href="/foodmap/3">板 橋 區</a></li>
+													<li><a href="/foodmap/5">新 店 區</a></li>
+													<li><a href="/foodmap/6">新 莊 區</a></li>
+												</ul>
+											</li>
+										</ul>
+									</li>
+									<li>
+										<a href="/nightview/300">夜遊景點</a>
+										<ul>
+											<li>
+												<a href="/nightview/100">台 北 市</a>
+												<ul>
+													<li><a href="/nightview/0">大 安 區</a></li>
+													<li><a href="/nightview/8">中 山 區</a></li>
+													<li><a href="/nightview/4">中 正 區</a></li>
+													<li><a href="/nightview/7">士 林 區</a></li>
+													<li><a href="/nightview/1">內 湖 區</a></li>
+													<li><a href="/nightview/2">信 義 區</a></li>
+												</ul>
+											</li>
+											<li>
+												<a href="/nightview/100">新 北 市</a>
+												<ul>
+													<li><a href="/nightview/3">板 橋 區</a></li>
+													<li><a href="/nightview/5">新 店 區</a></li>
+													<li><a href="/nightview/6">新 莊 區</a></li>
+												</ul>
+											</li>
+										</ul>
+									</li>
+									<li>
+										<a href="/mytrip/{{ user.username }}">我的行程</a>
+									</li>
+									{% if user.is_authenticated %}
+
+									<li class="pull-right"><a href="/logout/">登出</a></li>
+									<li class="pull-right" ><a href="#" class="notrans">{{ user.last_name }}{{ user.first_name }}，歡迎您回來。</a></li>
+									{% else %}
+									<a style="margin-right: 15px; margin-top: 5px" class="pull-right" href="/index/" data-toggle="modal" data-target="#login-modal">Login</a>
+									{% endif %}
+								</ul>
+							</nav>
+	
+					</div>
+				</div>
+				
+			<!-- Banner -->
+				<div id="banner">
+
+					<section class="container">
+						<img src="https://i.imgur.com/LeX9DtV.png">
+						<p>　　帶您用最簡單的方式探索台北市、新北市熱門及私藏景點。</p>
+						<br><br><br><br><br><br><br><br>
+					</section>
+				</div>
+
+			</div>
+		
+		<!-- Section One -->
+			<div class="wrapper style2">
+				<section class="container">
+
+					<div class="row double">
+						<div class="6u">
+							<header class="major">
+								<h2>最佳的雙北夜景行程規劃網站。</h2>
+								<span class="byline">為了提供最好的服務，我們耗費了許多人力及時間來建構獨特且實用的功能，期待能減少您花在規劃行程上的時間，並擁有最佳的旅遊體驗，不管是自己一人壯遊，或是和情侶、朋友們共同規劃，我們都能讓您來一趟說走就走的旅行而無其他後顧之憂。
+								</span>
+								<span class="byline" style="color: black; font-size: 1.8em;">　　　　　　　　－－現在就加入我們吧！</span>
+							</header>
+						</div>
+						<div class="6u">
+							<p><h2>The best website for planning your night.</h2><br>
+             In order to provide the best service, we have spent a lot of human resources to build unique and practical features, expect it could reduce the time you spend on planning your itinerary and let you have fantastic travel experience as well. No matter who you travel with, this website could make it happen without worries. Remember to sign up and add the attractions you like, get the ball rolling!</p>
+							<a href="/index/" data-toggle="modal" data-target="#register-modal" class="button">Sign up</a>
+						</div>
+					</div>
+				</section>
+			</div>
+
+		
+
+		<!-- Team -->
+			<div class="wrapper style5">
+				<section id="team" class="container">
+					<header class="major">
+						<h2>團 隊 成 員</h2>
+					</header>
+					<div class="row">
+						<div class="3u">
+							<a href="#" class="image"><img src="/static/images/p1.jpg" alt=""></a>
+							<h3>Sui Yang</h3>
+							<p>核心概念發想及前端模板設計、功能實作。</p>
+						</div>
+						<div class="3u">
+							<a href="#" class="image"><img src="/static/images/p2.jpg" alt=""></a>
+							<h3>Guo Yi-Xuan</h3>
+							<p>核心概念發想及前端模板微調、資料蒐集。</p>
+						</div>
+						<div class="3u">
+							<a href="#" class="image"><img src="/static/images/p3.jpg" alt=""></a>
+							<h3>TUNG PO-WEI</h3>
+							<p>核心概念發想、資料蒐集、實際造訪景點給予意見。</p>
+						</div>
+						<div class="3u">
+							<a href="#" class="image"><img src="/static/images/p4.jpg" alt=""></a>
+							<h3>CHANG TSEN-HSUAN</h3>
+							<p>核心概念發想、資料蒐集、前端切版建議。</p>
+						</div>
+					</div>
+				</section>
+			</div>
+
+	<!-- Footer -->
+		<div id="footer">
+			<section class="container">
+				<header class="major">
+					<h2>Connect with us</h2>
+					<span class="byline">如果您在使用上有任何意見或問題，請向我們回報。</span>
+				</header>
+				<ul class="icons">
+					<li class="active"><a href="https://www.facebook.com/roow197088" class="fa fa-facebook"><span>Facebook</span></a></li>
+					<li><a href="https://www.instagram.com/roow197088/" class="fa fa-instagram"><span>Pinterest</span></a></li>
+				</ul>
+				<hr />
+			</section>
+			
+			<!-- Copyright -->	
+		</div>
+
+	</body>
+</html>

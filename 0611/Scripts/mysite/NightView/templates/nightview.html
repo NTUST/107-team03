@@ -1,0 +1,268 @@
+<!DOCTYPE HTML>
+<!--
+	Solarize by TEMPLATED
+	templated.co @templatedco
+	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
+<html>
+	<head>
+		<title>雙北夜啖城 > 夜遊景點</title>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<!--[if lte IE 8]><script src="css/ie/html5shiv.js"></script><![endif]-->
+		<script src="/static/js/jquery.min.js"></script>
+		<script src="/static/js/jquery.dropotron.min.js"></script>
+		<script src="/static/js/skel.min.js"></script>
+		<script src="/static/js/skel-layers.min.js"></script>
+		<script src="/static/js/init.js"></script>
+		<link rel="stylesheet" href="/static/css/animate.css" />
+
+		<link rel="stylesheet" href="/static/css/skel.css" />
+		<link rel="stylesheet" href="/static/css/style.css" />
+
+		<!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
+	</head>
+	<body>
+
+		<!-- Header Wrapper -->
+			<div class="wrapper style1">
+			
+				<!-- Header -->
+					<div id="header">
+						<div class="container">
+								
+							<!-- Logo -->
+								<a href="/index/"><img src="https://i.imgur.com/LeX9DtV.png" style="margin: 7px"width="200.51px" height="55px"></a>
+							
+							<!-- Nav -->
+								<nav id="nav">
+								<ul>
+									<li><a href="/index/">Home</a></li>
+																		<li>
+										<a href="/foodmap/300">美食地圖</a>
+										<ul>
+											<li>
+												<a href="/foodmap/100">台 北 市</a>
+												<ul>
+													<li><a href="/foodmap/0">大 安 區</a></li>
+														<li><a href="/foodmap/8">中 山 區</a></li>
+													<li><a href="/foodmap/4">中 正 區</a></li>
+													<li><a href="/foodmap/7">士 林 區</a></li>
+													<li><a href="/foodmap/1">內 湖 區</a></li>
+													<li><a href="/foodmap/2">信 義 區</a></li>
+												</ul>
+											</li>
+											<li>
+												<a href="/foodmap/100">新 北 市</a>
+												<ul>
+													<li><a href="/foodmap/3">板 橋 區</a></li>
+													<li><a href="/foodmap/5">新 店 區</a></li>
+													<li><a href="/foodmap/6">新 莊 區</a></li>
+												</ul>
+											</li>
+										</ul>
+									</li>
+									<li>
+										<a href="/nightview/300">夜遊景點</a>
+										<ul>
+											<li>
+												<a href="/nightview/100">台 北 市</a>
+												<ul>
+													<li><a href="/nightview/0">大 安 區</a></li>
+													<li><a href="/nightview/8">中 山 區</a></li>
+													<li><a href="/nightview/4">中 正 區</a></li>
+													<li><a href="/nightview/7">士 林 區</a></li>
+													<li><a href="/nightview/1">內 湖 區</a></li>
+													<li><a href="/nightview/2">信 義 區</a></li>
+												</ul>
+											</li>
+											<li>
+												<a href="/nightview/100">新 北 市</a>
+												<ul>
+													<li><a href="/nightview/3">板 橋 區</a></li>
+													<li><a href="/nightview/5">新 店 區</a></li>
+													<li><a href="/nightview/6">新 莊 區</a></li>
+												</ul>
+											</li>
+										</ul>
+									</li>
+									<li>
+										<a href="/mytrip/{{ user.username }}">我的行程</a>
+									</li>
+									{% if user.is_authenticated %}
+
+									<li class="pull-right"><a href="/logout/">登出</a></li>
+									<li class="pull-right" ><a href="#" id="notrans">{{ user.last_name }}{{ user.first_name }}，歡迎您回來。</a></li>
+									{% else %}
+									<a style="margin-right: 10px" class="pull-right" href="/index/" data-toggle="modal" data-target="#login-modal">Login</a>
+									{% endif %}
+								</ul>
+							</nav>
+	
+					</div>
+				</div>
+		
+		<!-- Main -->
+			<div id="main" class="wrapper style4">
+				<div class="container">
+					<div class="row">
+
+						<!-- Sidebar -->
+						<div id="sidebar" class="4u">
+							<section>
+								<header class="major">
+											
+									<h2>旅行的意義</h2>
+									<br>
+									<h4>　　讓天涯海角佈滿你我的足跡，</h4>
+									<h4>　　就是你該出發的原因。</h4>
+
+
+									
+									
+								</header>									
+								<p>在這裡，您會看到各個地區的夜景。</p>
+								<p style="margin-top: -30px">當然，請不要忘了加入到您的行程中。</p>
+
+							</section>
+							
+						</div>
+
+						<!-- Content -->
+						<div id="content" class="8u skel-cell-important">
+							<section>
+								<header class="major">
+									<h2>{{ area }}</h2>
+									<span class="byline">加入有興趣的景點到您的行程。</span>
+									<br>
+									<hr id="style-two">
+
+								</header>
+								{% for n in nightviews %}
+									<div id="item" class="animated fadeIn">
+									<div id="img" >
+										<img class="item-img" src={{ n.image_url }}>
+										<div class="ovrly"></div>
+										<div class="buttons">
+											<a href={{ n.blog_url }} class="fa fa-search" target="_blank"></a>
+										</div>
+			                        </div>
+
+
+											<div id="info"  >
+												<h2>{{ n.view_name }}
+													{% if n.area == 0 %}
+													【大安區】
+													{% elif n.area == 1 %}
+													【內湖區】
+													{% elif n.area == 2 %}
+													【信義區】
+													{% elif n.area == 3 %}
+													【板橋區】
+													{% elif n.area == 4 %}
+													【中正區】
+													{% elif n.area == 5 %}
+													【新店區】
+													{% elif n.area == 6 %}
+													【新莊區】
+													{% elif n.area == 7 %}
+													【士林區】
+													{% elif n.area == 8 %}
+													【中山區】
+													{% endif %}
+												</h2>
+												<br>
+												<h6>地址：{{ n.address }}<br>
+												評價：{% if n.rating < 3.4 %}					
+												<i class="fa fa-star"; style="color: orange;"></i>
+												<i class="fa fa-star"; style="color: orange;"></i>
+												<i class="fa fa-star"; style="color: orange;"></i>
+												{% elif n.rating > 3.4 and n.rating < 4 %}
+												<i class="fa fa-star"; style="color: orange;"></i>
+												<i class="fa fa-star"; style="color: orange;"></i>
+												<i class="fa fa-star"; style="color: orange;"></i>
+												<i class="fa fa-star-half"; style="color: orange;"></i>
+												{% elif n.rating > 3.9 and n.rating < 4.4 %}
+												<i class="fa fa-star"; style="color: orange;"></i>
+												<i class="fa fa-star"; style="color: orange;"></i>
+												<i class="fa fa-star"; style="color: orange;"></i>
+												<i class="fa fa-star"; style="color: orange;"></i>
+												{% elif n.rating > 4.4 and n.rating < 5 %}
+												<i class="fa fa-star"; style="color: orange;"></i>
+												<i class="fa fa-star"; style="color: orange;"></i>
+												<i class="fa fa-star"; style="color: orange;"></i>
+												<i class="fa fa-star"; style="color: orange;"></i>
+												<i class="fa fa-star-half"; style="color: orange;"></i>
+												{% elif n.rating == 5 %}
+												<i class="fa fa-star"; style="color: orange;"></i>
+												<i class="fa fa-star"; style="color: orange;"></i>
+												<i class="fa fa-star"; style="color: orange;"></i>
+												<i class="fa fa-star"; style="color: orange;"></i>
+												<i class="fa fa-star"; style="color: orange;"></i>
+												{% endif %}
+
+												{% if n.view_type == 0 %}
+												&nbsp;&nbsp;景點類型： 山區
+												{% else %}
+												&nbsp;&nbsp;景點類型： 都市
+												{% endif %}</h6>
+									
+												<p class="infos"> 
+													{% if n.is_direct  %}
+													可直達：是
+													{% else %}
+													可直達：否
+													{% endif %}
+													{% if n.is_direct == False %}
+													&nbsp;&nbsp;步行時間： {{ n.walking_time }} 分鐘
+													{% endif %}<br>
+													平均停留 {{ n.average_stop_time }} 分鐘<br>
+													簡介： {{ n.content }}<br>
+													<div id="add" title="加到我的行程">
+														<a href="/nightview/add/{{ n.id }}/{{ user.username }}" onclick="checkIfExisted()" >加  入</a>
+													</div>
+													<script type="text/javascript">
+														function checkIfExisted() {
+														{% if message %}
+															alert("{{ message }}");
+														{% endif %}
+														}
+													</script>
+											</p>					
+											</div>
+
+									</div>	
+									<hr id="style-two">
+									{% endfor %}
+							</section>
+						</div>
+
+
+
+					</div>
+				</div>
+			</div>
+		
+		<!-- Team -->
+
+
+	<!-- Footer -->
+		<div id="footer" style="background: rgb(34,34,34);">
+			<section class="container">
+				<header class="major">
+					<h2>Connect with us</h2>
+					<span class="byline">如果您在使用上有任何意見或問題，請向我們回報。</span>
+				</header>
+				<ul class="icons">
+					<li class="active"><a href="https://www.facebook.com/roow197088" class="fa fa-facebook"><span>Facebook</span></a></li>
+					<li><a href="https://www.instagram.com/roow197088/" class="fa fa-instagram"><span>Pinterest</span></a></li>
+				</ul>
+				<hr />
+			</section>
+			
+			<!-- Copyright -->
+
+
+	</body>
+</html>

@@ -1,0 +1,309 @@
+<!DOCTYPE HTML>
+<!--
+    Solarize by TEMPLATED
+    templated.co @templatedco
+    Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+    -->
+<html>
+    <head>
+        <title>雙北夜啖城 > 我的行程</title>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <!--[if lte IE 8]><script src="css/ie/html5shiv.js"></script><![endif]-->
+        <script src="/static/js/jquery.mim.js"></script>
+        <script src="/static/js/jquery.dropotrom.mim.js"></script>
+        <script src="/static/js/skel.mim.js"></script>
+        <script src="/static/js/skel-layers.mim.js"></script>
+        <script src="/static/js/init.js"></script>
+        <link rel="stylesheet" href="/static/css/animate.css" />
+        <link rel="stylesheet" href="/static/css/skel.css" />
+        <link rel="stylesheet" href="/static/css/style.css" />
+        <!--[if lte IE 8]>
+        <link rel="stylesheet" href="css/ie/v8.css" />
+        <![endif]-->
+    </head>
+    <body>
+        <!-- Header Wrapper -->
+        <div class="wrapper style1">
+        <!-- Header -->
+        <div id="header">
+            <div class="container">
+                <!-- Logo -->
+                <a href="/index/"><img src="https://i.imgur.com/LeX9DtV.png" style="margin: 7px"width="200.51px" height="55px"></a>
+                <!-- Nav -->
+                <nav id="nav">
+                    <ul>
+                        <li><a href="/index/">Home</a></li>
+                                                            <li>
+                                        <a href="/foodmap/300">美食地圖</a>
+                                        <ul>
+                                            <li>
+                                                <a href="/foodmap/100">台 北 市</a>
+                                                <ul>
+                                                    <li><a href="/foodmap/0">大 安 區</a></li>
+                                                    <li><a href="/foodmap/8">中 山 區</a></li>
+                                                    <li><a href="/foodmap/4">中 正 區</a></li>
+                                                    <li><a href="/foodmap/7">士 林 區</a></li>
+                                                    <li><a href="/foodmap/1">內 湖 區</a></li>
+                                                    <li><a href="/foodmap/2">信 義 區</a></li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <a href="/foodmap/100">新 北 市</a>
+                                                <ul>
+                                                    <li><a href="/foodmap/3">板 橋 區</a></li>
+                                                    <li><a href="/foodmap/5">新 店 區</a></li>
+                                                    <li><a href="/foodmap/6">新 莊 區</a></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="/nightview/300">夜遊景點</a>
+                                        <ul>
+                                            <li>
+                                                <a href="/nightview/100">台 北 市</a>
+                                                <ul>
+                                                    <li><a href="/nightview/0">大 安 區</a></li>
+                                                    <li><a href="/nightview/8">中 山 區</a></li>
+                                                    <li><a href="/nightview/4">中 正 區</a></li>
+                                                    <li><a href="/nightview/7">士 林 區</a></li>
+                                                    <li><a href="/nightview/1">內 湖 區</a></li>
+                                                    <li><a href="/nightview/2">信 義 區</a></li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <a href="/nightview/100">新 北 市</a>
+                                                <ul>
+                                                    <li><a href="/nightview/3">板 橋 區</a></li>
+                                                    <li><a href="/nightview/5">新 店 區</a></li>
+                                                    <li><a href="/nightview/6">新 莊 區</a></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="/mytrip/{{ user.username }}">我的行程</a>
+                                    </li>
+                                    {% if user.is_authenticated %}
+
+                                    <li class="pull-right"><a href="/logout/">登出</a></li>
+                                    <li class="pull-right" ><a href="#" id="notrans">{{ user.last_name }}{{ user.first_name }}，歡迎您回來。</a></li>
+                                    {% else %}
+                                    <a style="margin-right: 10px" class="pull-right" href="/index/" data-toggle="modal" data-target="#login-modal">Login</a>
+                                    {% endif %}
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <!-- Main -->
+        <div id="main" class="wrapper style4">
+            <div class="container">
+                <div class="row">
+                    <!-- Sidebar -->
+                    <div id="sidebar" class="4u">
+                        <section>
+                            <header class="major">
+                                <h2>我的行程</h2>
+                            </header>
+                            <p>在這裡，您會看到您先前加入的美食及景點</p>
+                            <p style="margin-top: -30px">以及預估行程會花費的時間，祝您旅途愉快。</p>
+                        </section>
+                    </div>
+                    <!-- Content -->
+                    <div id="content" class="8u skel-cell-important">
+                        <section>
+                            <header class="major">
+                                <h2>{{ user.last_name }}{{ user.first_name }} 您好：</h2>
+                                <br>
+
+                                {% if total_nightview > 0 or total_food > 0 %}
+                                <div class="mytrip">
+                                    <h3 style="margin-bottom: 10px">您一共選擇了 <font color="red">{{ total_food }} </font>個美食及 <font color="red">{{ total_nightview }} </font>個景點，預計共花<font color="red"> {{ cost_hour }} 時 {{ cost_min }} 分</font> 來完成整趟旅程。
+                                    <h3>若您從現在開始行動的話，您將於 <font color="red">{{ lastYear }} 年 {{ lastMonth }} 月 {{ lastDay }} 日 {{ lastHour }} 時 {{ lastMinute }} 分 </font>結束行程。</h3>
+                                         <div id="clearAll" class="pull-right" title="清除我的行程" style="height:60px; margin-right:-20px; padding-top:20px">
+                                        <a href="/clean/{{ user.username }}"><h3>清除我的行程</h3></a>
+                                        </div>
+                                    <br>
+                                </div>
+                                {% else %}
+                                <div class="mytrip">
+                                    <h3 style="margin-bottom: 10px">您還沒加入任何景點，請把握人生最珍貴的東西－－<font color="red">時間</font>。</h3>
+                                    <h3 style="padding-top: 10px">為了不要留下任何遺憾，趕緊去安排您的行程吧！</h3>
+                                </div>
+                                {% endif %}
+
+                                <hr id="style-two">
+                            </header>
+                            {% for m in mytrip %}
+                            	{% if m.view_name == NULL %}
+                            		<div id="item" class="animated fadeIn" >
+                                        <div id="img" >
+                                            <img class="item-img" src={{ m.image_url }}>
+                                            <div class="ovrly"></div>
+                                            <div class="buttons">
+                                                <a href={{ m.blog_url }} class="fa fa-search" target="_blank"></a>
+                                            </div>
+                                        </div>
+									<div id="info"  >
+										<h2>{{ m.food_name }}
+											{% if m.area == 0 %}
+											【大安區】
+											{% elif m.area == 1 %}
+											【內湖區】
+											{% elif m.area == 2 %}
+											【信義區】
+											{% elif m.area == 3 %}
+											【板橋區】
+											{% elif m.area == 4 %}
+											【中正區】
+											{% endif %}
+										</h2>
+										<br>
+										<h6>地址：{{ m.address }}<br>
+										評價：{% if m.rating < 3.4 %}
+										<i class="fa fa-star"; style="color: orange;"></i>
+										<i class="fa fa-star"; style="color: orange;"></i>
+										<i class="fa fa-star"; style="color: orange;"></i>
+										{% elif m.rating > 3.4 and m.rating < 4 %}
+										<i class="fa fa-star"; style="color: orange;"></i>
+										<i class="fa fa-star"; style="color: orange;"></i>
+										<i class="fa fa-star"; style="color: orange;"></i>
+										<i class="fa fa-star-half"; style="color: orange;"></i>
+										{% elif m.rating > 3.9 and m.rating < 4.4 %}
+										<i class="fa fa-star"; style="color: orange;"></i>
+										<i class="fa fa-star"; style="color: orange;"></i>
+										<i class="fa fa-star"; style="color: orange;"></i>
+										<i class="fa fa-star"; style="color: orange;"></i>
+										{% elif m.rating > 4.4 and m.rating < 5 %}
+										<i class="fa fa-star"; style="color: orange;"></i>
+										<i class="fa fa-star"; style="color: orange;"></i>
+										<i class="fa fa-star"; style="color: orange;"></i>
+										<i class="fa fa-star"; style="color: orange;"></i>
+										<i class="fa fa-star-half"; style="color: orange;"></i>
+										{% elif m.rating == 5 %}
+										<i class="fa fa-star"; style="color: orange;"></i>
+										<i class="fa fa-star"; style="color: orange;"></i>
+										<i class="fa fa-star"; style="color: orange;"></i>
+										<i class="fa fa-star"; style="color: orange;"></i>
+										<i class="fa fa-star"; style="color: orange;"></i>
+										{% endif %}　電話： {{ m.phone }}</h6>
+										<p class="infos"> 
+											{% if m.is_vegitarian %}
+											提供素食： 是　
+											{% else %}
+											提供素食： 否　
+											{% endif %}
+											平均消費： $ {{ m.price }}/人<br>
+											營業時間： {{ m.opening_time }}<br>
+											簡介： {{ m.content }}<br>
+
+									</p>					
+									</div>
+
+								</div>	
+								<hr id="style-two">
+
+								{% else %}
+								<div id="item" class="animated fadeIn">
+                                            <div id="img" >
+                                                <img class="item-img" src={{ m.image_url }}>
+                                                <div class="ovrly"></div>
+                                                <div class="buttons">
+                                                    <a href={{ m.blog_url }} class="fa fa-search" target="_blank"></a>
+                                                </div>
+                                            </div>
+
+
+                                            <div id="info"  >
+                                                <h2>{{ m.view_name }}
+                                                    {% if m.area == 0 %}
+                                                    【大安區】
+                                                    {% elif m.area == 1 %}
+                                                    【內湖區】
+                                                    {% elif m.area == 2 %}
+                                                    【信義區】
+                                                    {% elif m.area == 3 %}
+                                                    【板橋區】
+                                                    {% elif m.area == 4 %}
+                                                    【中正區】
+                                                    {% endif %}
+                                                </h2>
+                                                <br>
+                                                <h6>地址：{{ m.address }}<br>
+                                                評價：{% if m.rating < 3.4 %}                  
+                                                <i class="fa fa-star"; style="color: orange;"></i>
+                                                <i class="fa fa-star"; style="color: orange;"></i>
+                                                <i class="fa fa-star"; style="color: orange;"></i>
+                                                {% elif m.rating > 3.4 and m.rating < 4 %}
+                                                <i class="fa fa-star"; style="color: orange;"></i>
+                                                <i class="fa fa-star"; style="color: orange;"></i>
+                                                <i class="fa fa-star"; style="color: orange;"></i>
+                                                <i class="fa fa-star-half"; style="color: orange;"></i>
+                                                {% elif m.rating > 3.9 and m.rating < 4.4 %}
+                                                <i class="fa fa-star"; style="color: orange;"></i>
+                                                <i class="fa fa-star"; style="color: orange;"></i>
+                                                <i class="fa fa-star"; style="color: orange;"></i>
+                                                <i class="fa fa-star"; style="color: orange;"></i>
+                                                {% elif m.rating > 4.4 and m.rating < 5 %}
+                                                <i class="fa fa-star"; style="color: orange;"></i>
+                                                <i class="fa fa-star"; style="color: orange;"></i>
+                                                <i class="fa fa-star"; style="color: orange;"></i>
+                                                <i class="fa fa-star"; style="color: orange;"></i>
+                                                <i class="fa fa-star-half"; style="color: orange;"></i>
+                                                {% elif m.rating == 5 %}
+                                                <i class="fa fa-star"; style="color: orange;"></i>
+                                                <i class="fa fa-star"; style="color: orange;"></i>
+                                                <i class="fa fa-star"; style="color: orange;"></i>
+                                                <i class="fa fa-star"; style="color: orange;"></i>
+                                                <i class="fa fa-star"; style="color: orange;"></i>
+                                                {% endif %}
+
+                                                {% if m.view_type == 0 %}
+                                                &nbsp;&nbsp;景點類型： 山區
+                                                {% else %}
+                                                &nbsp;&nbsp;景點類型： 都市
+                                                {% endif %}</h6>
+                                    
+                                                <p> 
+                                                    {% if m.is_direct  %}
+                                                    可直達：是
+                                                    {% else %}
+                                                    可直達：否
+                                                    {% endif %}
+                                                    {% if m.is_direct == False %}
+                                                    &nbsp;&nbsp;步行時間： {{ m.walking_time }} 分鐘
+                                                    {% endif %}<br>
+                                                    平均停留 {{ m.average_stop_time }} 分鐘<br>
+                                                    簡介： {{ m.content }}<br>
+
+                                            </p>                    
+                                            </div>
+
+                                    </div>	
+								<hr id="style-two">
+                            	{% endif %}
+                            {% endfor %}
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Team -->
+        <!-- Footer -->
+        <div id="footer" style="background: rgb(34,34,34);">
+        <section class="container">
+            <header class="major">
+                <h2>Connect with us</h2>
+                <span class="byline">如果您在使用上有任何意見或問題，請向我們回報。</span>
+            </header>
+            <ul class="icons">
+                <li class="active"><a href="https://www.facebook.com/roow197088" class="fa fa-facebook"><span>Facebook</span></a></li>
+                <li><a href="https://www.instagram.com/roow197088/" class="fa fa-instagram"><span>Pinterest</span></a></li>
+            </ul>
+            <hr />
+        </section>
+        <!-- Copyright -->
+    </body>
+</html>
